@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelagem Matemática e Programação: O Uso de Algoritmos na Inovação
+Tecnológica - Criptografia e Segurança de Dados</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <span class="badge">Trabalho &bull; Matemática II &bull; Alura</span>
+            <h1>Modelagem Matemática e Programação</h1>
+            <p>Criptografia e Segurança de Dados - Luiza & Laura 3D</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- SEÇÃO 1: INTRODUÇÃO DO TRABALHO -->
+        <section class="card">
+            <h2>1. Introdução do Trabalho</h2>
+            <p class="lead">A criptografia é uma forma de proteger informações utilizando modelos matemáticos. Ela transforma os dados originais em informações codificadas, que só podem ser acessadas corretamente por quem possui a chave adequada.</p>
+            <div class="grid-2">
+                <div>
+                    <h3>Contextualização</h3>
+                    <p>A criptografia é usada para proteger dispositivos, para proteger transações financeiras, e para
+garantir que mensagens com informações pessoais são particulares.</p>
+                </div>
+                <div>
+                    <h3>Objetivo</h3>
+                    <p>O principal objetivo deste trabalho foi analisar a aplicação da teoria dos
+números na criptografia, com foco no algoritmo RSA, demonstrando a
+aplicação prática de conceitos de Matemática através de códigos de
+programação para resolver um problema real de inovação.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: EXPLICAÇÃO DE COMO O SITE FOI FEITO -->
+        <section class="card">
+            <h2>2. Explicação da Atividade: Como o Site Foi Desenvolvido</h2>
+            <p>Para transformar a proposta teórica em um projeto funcional, interativo e visualmente moderno, a atividade foi estruturada utilizando os padrões fundamentais da web separados em dois arquivos principais:</p>
+
+            <div class="theory-grid" style="margin-top: 1.5rem;">
+                <div class="theory-item">
+                    <div class="theory-icon"></div>
+                    <h4>O desenvolvimento do código</h4>
+                    <p>foi realizado utilizando a linguagem de
+programação Python, com o objetivo de demonstrar a aplicação dos conceitos
+matemáticos envolvidos na criptografia RSA. Para isso, foram utilizados
+conceitos de números primos, potenciação, função totiente de Euler e
+matemática modular.</p>
+                </div>
+                <div class="theory-item">
+                    <div class="theory-icon"></div>
+                    <h4>Números primos</h4>
+                    <p>Inicialmente, foram escolhidos dois números primos para a realização do
+exemplo: p e q. A partir desses valores, foi calculado o número n,
+utilizado posteriormente nas operações de criptografia.</p>
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 2rem;">
+                <h4>A criptografia está presente em nosso cotidiano</h4>
+                <p>Assim, conceitos como números primos, matemática modular, função totiente e inverso modular podem ser aplicados para representar o funcionamento de um sistema de segurança de dados.</p>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3: LABORATÓRIO PRÁTICO -->
+        <section class="card">
+            <h2>3. Laboratório Prático de Simulação</h2>
+            <p>Teste o algoritmo desenvolvido para este trabalho diretamente no navegador:</p>
+            
+            <div class="interactive-panel">
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <label for="nucleos">Núcleos Iniciais:</label>
+                        <input type="number" id="nucleos" value="5" min="1" max="50">
+                    </div>
+                    <div class="control-group">
+                        <label for="taxa">Taxa de Reação (Média):</label>
+                        <input type="number" id="taxa" value="2.2" step="0.1" min="1.0" max="5.0">
+                    </div>
+                    <div class="control-group">
+                        <label for="geracoesInput">Total de Gerações:</label>
+                        <input type="number" id="geracoesInput" value="8" min="3" max="15">
+                    </div>
+                </div>
+
+                <button id="btn-simular" class="btn-primary">Executar Simulação Computacional</button>
+
+                <div id="resultado-container" class="result-box hidden">
+                    <h4>Resultados da Simulação:</h4>
+                    <div id="resultado-texto"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Trabalho Acadêmico de Matemática II &bull; Documentação e Aplicação Web</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('btn-simular').addEventListener('click', function() {
+            const nucleosIniciais = parseInt(document.getElementById('nucleos').value) || 5;
+            const taxaReacao = parseFloat(document.getElementById('taxa').value) || 2.2;
+            const geracoes = parseInt(document.getElementById('geracoesInput').value) || 8;
+
+            let ativoAtual = nucleosIniciais;
+            let htmlOutput = `<p><strong>Estado Inicial:</strong> ${nucleosIniciais} elementos ativos.</p><ul>`;
+
+            let explosao = false;
+            for (let i = 1; i <= geracoes; i++) {
+                let fatorAleatorio = 0.5 + (Math.random() * 1.0);
+                let novosAtivos = Math.floor(ativoAtual * taxaReacao * fatorAleatorio);
+                ativoAtual += novosAtivos;
+
+                htmlOutput += `<li><strong>Geração ${i}:</strong> +${novosAtivos} novos ativados &rarr; <strong>Total acumulado: ${ativoAtual.toLocaleString('pt-BR')}</strong></li>`;
+
+                if (ativoAtual > 1000000) {
+                    htmlOutput += `</ul><p class="alert-text">⚠️ <strong>Alerta Crítico:</strong> Limite de reação exponencial massiva atingido na geração ${i}!</p>`;
+                    explosao = true;
+                    break;
+                }
+            }
+
+            if (!explosao) {
+                htmlOutput += `</ul><p class="success-text">✅ Simulação concluída com estabilidade controlada ao final de ${geracoes} gerações.</p>`;
+            }
+
+            const container = document.getElementById('resultado-container');
+            const textoDiv = document.getElementById('resultado-texto');
+            textoDiv.innerHTML = htmlOutput;
+            container.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
